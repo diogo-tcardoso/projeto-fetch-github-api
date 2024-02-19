@@ -148,6 +148,23 @@ main {
   color: #fff
 }
 
+.container .profile-data .events{
+  background-color: lightgray;
+  padding: 30px;
+}
+
+.container .profile-data .events h2{
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.container .profile-data .events ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
 .container .profile-data.hide{
   display: none;
 }

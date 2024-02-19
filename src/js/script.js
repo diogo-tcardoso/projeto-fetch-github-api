@@ -2,6 +2,7 @@ import { getUser } from "./services/user.js"
 import { repos } from "./services/repositories.js"
 import { user } from "./objects/user.js"
 import { screen } from "./objects/screen.js"
+import { events } from "./services/events.js"
 
 document.getElementById('btn-search').addEventListener('click', () => {
     const userName = document.getElementById('input-search').value
@@ -33,23 +34,9 @@ async function getUserProfile(userName){
         return
     }
     const repositoriesResponse = await repos(userName)
+    const eventsResponse = await events(userName)
     user.setInfo(userResponse)
     user.setRepositories(repositoriesResponse)
-    screen.rederUser(user)
-
+    user.setEvents(eventsResponse)
+    screen.renderUser(user)
 }
-
-// function getUserRepositories(userName){
-//     repos(userName).then(reposData => {
-//         let repositoriesItens = ""
-//         reposData.forEach(repo => {
-//             repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">"${repo.name}"</a></li>`
-//         })
-
-//         document.querySelector('.profile-data').innerHTML +=`
-//             <div class="repositories section">
-//                 <h2>Repositórios</h2>
-//                 <ul>${repositoriesItens}</ul>
-//             </div>`
-//     })
-// }
